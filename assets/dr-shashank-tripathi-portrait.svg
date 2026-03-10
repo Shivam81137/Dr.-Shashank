@@ -1,0 +1,41 @@
+<svg width="720" height="900" viewBox="0 0 720 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Dr. Shashank Tripathi portrait placeholder</title>
+  <desc id="desc">Professional portrait placeholder for Dr. Shashank Tripathi until the final uploaded photograph is saved into the website assets.</desc>
+  <defs>
+    <linearGradient id="bg" x1="84" y1="54" x2="657" y2="864" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8F4FB"/>
+      <stop offset="1" stop-color="#D8EEF0"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="198" y1="434" x2="560" y2="863" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#ECF3F9"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="269" y1="212" x2="509" y2="481" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D5C91"/>
+      <stop offset="1" stop-color="#1F8A70"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="900" rx="42" fill="url(#bg)"/>
+  <circle cx="161" cy="120" r="82" fill="#FFFFFF" fill-opacity="0.34"/>
+  <circle cx="122" cy="214" r="42" fill="#FFFFFF" fill-opacity="0.2"/>
+  <ellipse cx="362" cy="248" rx="110" ry="128" fill="#F0C9B1"/>
+  <path d="M258 240C258 155 311 115 382 115C448 115 489 162 489 227V281H258V240Z" fill="#232426"/>
+  <path d="M286 292C304 368 441 374 462 296L476 343C446 394 301 397 272 343L286 292Z" fill="#D9B39C"/>
+  <path d="M216 841C218 658 265 489 364 489C463 489 518 654 523 841H216Z" fill="url(#coat)"/>
+  <path d="M316 489H409L446 563H279L316 489Z" fill="#23344A"/>
+  <path d="M324 557H399L432 841H290L324 557Z" fill="#172536"/>
+  <path d="M192 846C205 695 261 574 316 533L348 846H192Z" fill="url(#coat)"/>
+  <path d="M533 846C520 695 464 574 409 533L377 846H533Z" fill="url(#coat)"/>
+  <path d="M486 577C549 603 589 677 608 846H512L486 577Z" fill="#F6FAFE"/>
+  <path d="M231 575C172 605 134 680 115 846H210L231 575Z" fill="#F6FAFE"/>
+  <path d="M296 252C298 289 327 314 364 314C402 314 430 289 432 252" stroke="#9A6E5B" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="326" cy="237" r="7" fill="#47352D"/>
+  <circle cx="403" cy="237" r="7" fill="#47352D"/>
+  <path d="M335 270C351 281 377 282 395 271" stroke="#885F4E" stroke-width="8" stroke-linecap="round"/>
+  <rect x="77" y="694" width="234" height="102" rx="22" fill="#FFFFFF" fill-opacity="0.92"/>
+  <text x="109" y="733" fill="#0D5C91" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Portrait ready</text>
+  <text x="109" y="770" fill="#4D6476" font-family="Inter, Arial, sans-serif" font-size="20">Replace with the final photo</text>
+  <rect x="450" y="725" width="150" height="44" rx="22" fill="url(#accent)" fill-opacity="0.18"/>
+  <text x="483" y="753" fill="#0D5C91" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Dr ST</text>
+</svg>
+
