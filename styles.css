@@ -227,13 +227,13 @@ p {
 .brand-mark {
     width: 2.78rem;
     height: 2.78rem;
-    display: grid;
-    place-items: center;
+    display: block;
     border-radius: 16px;
-    color: #fff;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    object-fit: cover;
+    object-position: center top;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 10px 24px rgba(14, 79, 125, 0.25);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
 .site-nav {
