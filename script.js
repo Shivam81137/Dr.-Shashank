@@ -9,6 +9,25 @@ const revealTargets = document.querySelectorAll('.page-hero, .section, .hero-car
 
 const currentPage = document.body.dataset.page;
 
+const isReloadNavigation = () => {
+    if (window.performance && typeof window.performance.getEntriesByType === 'function') {
+        const navEntries = window.performance.getEntriesByType('navigation');
+        if (Array.isArray(navEntries) && navEntries.length > 0) {
+            return navEntries[0].type === 'reload';
+        }
+    }
+
+    if (window.performance && window.performance.navigation) {
+        return window.performance.navigation.type === 1;
+    }
+
+    return false;
+};
+
+if (currentPage && currentPage !== 'home' && isReloadNavigation()) {
+    window.location.replace('./index.html');
+}
+
 const THEME_KEY = 'dr-shashank-theme';
 
 const getPreferredTheme = () => {
