@@ -5,9 +5,26 @@
         width: min(calc(100% - 1.25rem), var(--container));
     }
 
+    body::before {
+        opacity: 0.42;
+        height: 50vh;
+    }
+
     .hero,
     .section {
         padding: 2.2rem 0;
+    }
+
+    .hero {
+        padding-top: 1.65rem;
+    }
+
+    .page-hero {
+        padding: 1.4rem 0 0.7rem;
+    }
+
+    .hero-copy {
+        padding-top: 0;
     }
 
     .hero h1 {

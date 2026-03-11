@@ -129,6 +129,26 @@ body {
     font-size: var(--type-base);
     line-height: 1.62;
     text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    isolation: isolate;
+    transition: background-color var(--motion-slow) var(--ease), color var(--motion-base) var(--ease);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -18% -10% auto;
+    height: 60vh;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 15% 35%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 58%),
+        radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--primary) 24%, transparent), transparent 60%);
+    opacity: 0.58;
+    transform: translate3d(0, 0, 0);
+    animation: bodyGlowDrift 18s ease-in-out infinite alternate;
 }
 
 a {
@@ -310,7 +330,7 @@ p {
 
 .hero {
     position: relative;
-    padding: var(--space-8) 0 var(--space-7);
+    padding: clamp(2.8rem, 5.3vw, var(--space-8)) 0 var(--space-7);
     overflow: clip;
     perspective: 1200px;
 }
@@ -347,7 +367,11 @@ p {
     display: grid;
     grid-template-columns: 1.14fr 0.86fr;
     gap: var(--space-5);
-    align-items: center;
+    align-items: start;
+}
+
+.hero-copy {
+    padding-top: clamp(0rem, 0.8vw, 0.45rem);
 }
 
 .eyebrow,
@@ -433,8 +457,8 @@ p {
         transform var(--motion-base) var(--ease),
         box-shadow var(--motion-base) var(--ease),
         background-color var(--motion-base) var(--ease),
-        border-color var(--motion-base) var(--ease),
-        color var(--motion-base) var(--ease);
+        border-color var(--motion-base) var (--ease),
+        color var(--motion-base) var (--ease);
 }
 
 .btn:hover,
@@ -502,7 +526,10 @@ p {
     font-size: var(--type-sm);
     box-shadow: var(--shadow-xs);
     backdrop-filter: blur(4px);
-    transition: transform var(--motion-base) var(--ease), box-shadow var(--motion-base) var(--ease), border-color var(--motion-base) var(--ease);
+    transition:
+        transform var(--motion-base) var(--ease),
+        box-shadow var(--motion-base) var(--ease),
+        border-color var(--motion-base) var (--ease);
 }
 
 .trust-points li:hover {
@@ -523,8 +550,8 @@ p {
     will-change: transform;
     transition:
         transform var(--motion-base) var(--ease),
-        box-shadow var(--motion-base) var(--ease),
-        border-color var(--motion-base) var(--ease);
+        box-shadow var(--motion-base) var (--ease),
+        border-color var(--motion-base) var (--ease);
     backdrop-filter: blur(10px);
 }
 
@@ -539,6 +566,7 @@ p {
 
 .hero-card {
     position: relative;
+    align-self: start;
     border-radius: var(--radius-lg);
     padding: var(--space-5);
     background:
@@ -550,13 +578,18 @@ p {
     position: absolute;
     top: 1.1rem;
     right: 1.1rem;
+    z-index: 4;
+    min-width: 8.2rem;
+    text-align: center;
     border-radius: 999px;
     font-size: var(--type-xs);
     font-weight: 800;
     color: var(--success);
-    background: rgba(29, 138, 114, 0.13);
+    background: color-mix(in srgb, var(--surface-solid) 72%, rgba(29, 138, 114, 0.24));
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 20px rgba(8, 32, 52, 0.16);
     padding: 0.5rem 0.82rem;
-    border: 1px solid rgba(29, 138, 114, 0.24);
+    border: 1px solid rgba(29, 138, 114, 0.34);
 }
 
 .doctor-portrait {
@@ -667,6 +700,7 @@ p {
 
 .page-hero {
     position: relative;
+    padding: clamp(2rem, 4vw, 3rem) 0 var(--space-3);
 }
 
 .page-hero h1,
@@ -687,8 +721,13 @@ p {
 }
 
 .section-alt {
-    background: color-mix(in srgb, var(--surface-solid) 56%, transparent);
+    background:
+        linear-gradient(180deg, color-mix(in srgb, var(--surface-solid) 56%, transparent), color-mix(in srgb, var(--surface-solid) 52%, transparent)),
+        radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 52%);
+    background-size: 100% 100%, 170% 170%;
+    background-position: center, 0% 0%;
     border-block: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
+    animation: sectionToneShift 16s ease-in-out infinite;
 }
 
 .stats-band {
@@ -904,8 +943,11 @@ p {
 .cta-band {
     color: #fff;
     background: linear-gradient(135deg, #0a3f62, #0d5f99 58%, #2d91ab);
+    background-size: 130% 130%;
+    background-position: 30% 50%;
     position: relative;
     overflow: hidden;
+    animation: ctaGradientFlow 14s ease-in-out infinite;
 }
 
 .cta-band::before {
@@ -980,51 +1022,63 @@ p {
     font-size: var(--type-sm);
 }
 
-/* Form styling (future-ready for contact forms) */
-label {
-    color: var(--heading);
-    font-weight: 600;
-    font-size: var(--type-sm);
+/* Transition safety overrides */
+.btn {
+    transition:
+        transform var(--motion-base) var(--ease),
+        box-shadow var(--motion-base) var(--ease),
+        background-color var(--motion-base) var(--ease),
+        border-color var(--motion-base) var (--ease),
+        color var(--motion-base) var (--ease);
 }
 
-input,
-textarea,
-select {
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: var(--surface-solid);
-    color: var(--text);
-    font: inherit;
-    padding: 0.76rem 0.9rem;
-    transition: border-color var(--motion-fast) var(--ease), box-shadow var(--motion-fast) var(--ease), transform var(--motion-fast) var(--ease);
+.trust-points li {
+    transition:
+        transform var(--motion-base) var (--ease),
+        box-shadow var(--motion-base) var (--ease),
+        border-color var(--motion-base) var (--ease);
 }
 
-input:hover,
-textarea:hover,
-select:hover {
-    border-color: rgba(15, 79, 125, 0.36);
+.hero-card,
+.info-card,
+.service-card,
+.location-card {
+    transition:
+        transform var(--motion-base) var (--ease),
+        box-shadow var(--motion-base) var (--ease),
+        border-color var(--motion-base) var (--ease);
 }
 
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-    border-color: rgba(15, 79, 125, 0.48);
-    box-shadow: 0 0 0 4px rgba(115, 201, 230, 0.28);
-    transform: translateY(-1px);
+/* Final transition fallbacks */
+.btn {
+    transition:
+        transform var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1),
+        background-color var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1),
+        color var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-input:invalid,
-textarea:invalid,
-select:invalid {
-    border-color: #d87474;
+.trust-points li,
+.hero-card,
+.info-card,
+.service-card,
+.location-card {
+    transition:
+        transform var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Reveal utilities */
 .reveal {
+    transition:
+        opacity var(--motion-slow) cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform var(--motion-slow) cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.is-pending {
     opacity: 0;
     transform: translateY(16px) translateZ(0);
-    transition: opacity var(--motion-slow) var(--ease), transform var(--motion-slow) var(--ease);
 }
 
 .reveal.in-view {
@@ -1072,6 +1126,37 @@ select:invalid {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes bodyGlowDrift {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.54;
+    }
+    100% {
+        transform: translate3d(0, 14px, 0) scale(1.04);
+        opacity: 0.66;
+    }
+}
+
+@keyframes sectionToneShift {
+    0%,
+    100% {
+        background-position: center, 0% 0%;
+    }
+    50% {
+        background-position: center, 100% 100%;
+    }
+}
+
+@keyframes ctaGradientFlow {
+    0%,
+    100% {
+        background-position: 30% 50%;
+    }
+    50% {
+        background-position: 70% 50%;
     }
 }
 
@@ -1132,7 +1217,7 @@ select:invalid {
     }
 
     .hero {
-        padding-top: var(--space-7);
+        padding-top: clamp(1.7rem, 7vw, var(--space-7));
     }
 
     .hero-card,
@@ -1185,3 +1270,4 @@ select:invalid {
         animation: none !important;
     }
 }
+

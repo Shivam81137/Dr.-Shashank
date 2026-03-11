@@ -113,22 +113,42 @@ if (navToggle && siteNav) {
 }
 
 if (revealTargets.length > 0) {
+    const isBelowFold = (element) => element.getBoundingClientRect().top > window.innerHeight * 0.9;
+
     revealTargets.forEach((target, index) => {
         target.classList.add('reveal');
         target.classList.add(`reveal-delay-${Math.min(index % 3, 3)}`);
+
+        if (isBelowFold(target)) {
+            target.classList.add('is-pending');
+        } else {
+            target.classList.add('in-view');
+        }
     });
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.16, rootMargin: '0px 0px -8% 0px' }
-    );
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('is-pending');
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.16, rootMargin: '0px 0px -8% 0px' }
+        );
 
-    revealTargets.forEach((target) => observer.observe(target));
+        revealTargets.forEach((target) => {
+            if (target.classList.contains('is-pending')) {
+                observer.observe(target);
+            }
+        });
+    } else {
+        revealTargets.forEach((target) => {
+            target.classList.remove('is-pending');
+            target.classList.add('in-view');
+        });
+    }
 }
